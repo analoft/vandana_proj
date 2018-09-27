@@ -5,7 +5,10 @@ library(lubridate)
 library(reshape2)
 library(data.table)
 
-for_val<-24
+#forecasting units
+for_val<-30
+
+
 dt$AQI[dt$AQI=="Atleast 3 inputs*"]<-0
 dt$AQI<-as.numeric(dt$AQI)
 dt[,"City_station"]<-paste0(dt$City,"-",dt$Station)

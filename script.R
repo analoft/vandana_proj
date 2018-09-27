@@ -65,6 +65,8 @@ if(length(rt)!=0){
   consolidate[,rt]<-NA
 }
 subindex<-subset(consolidate,select = c("From Date" ,  "To Date" , "CO" ,"NOx",  "Ozone"  ,     "PM2.5", "SO2" , "State"    ,   "City"     ,   "Station"))
+subindex$CO<-subindex$CO/1000
+
 
 pm25Fun<-function(value){value<-as.numeric(value);ifelse(is.na(value),0,ifelse(value<=30,value*50/30,ifelse((value>30 & value<=60),50+(value-30)*50/30,ifelse((value>60 & value<=90),100+(value-60)*100/30,ifelse((value>90 & value<=120),200+(value-90)*(100/30),ifelse((value>120 & value<=250),300+(value-120)*(100/130),ifelse(value>250,400+(value-250)*(100/130))))))))}
 subindex$PM2.5<-unlist(lapply(subindex$PM2.5,pm25Fun))
